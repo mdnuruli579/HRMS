@@ -1,0 +1,169 @@
+Entities:
+Employees
+Departments
+Job Positions
+Attendance
+Leave Management
+Payroll
+Performance Evaluations
+Training & Development
+Recruitment
+Benefits
+Projects
+Roles & Permissions
+
+Database Tables:
+
+1. Employees
+employee_id (PK)
+first_name
+last_name
+date_of_birth
+gender
+email
+phone
+address
+department_id (FK to Departments.department_id)
+job_position_id (FK to JobPositions.job_position_id)
+date_of_joining
+employment_status (e.g., Full-time, Part-time, Contractor)
+supervisor_id (FK to Employees.employee_id - Self-referencing key for reporting manager)
+created_at
+updated_at
+============
+2. Departments
+department_id (PK)
+department_name
+manager_id (FK to Employees.employee_id)
+created_at
+updated_at
+==============
+3. Job Positions
+job_position_id (PK)
+position_title
+position_description
+min_salary
+max_salary
+created_at
+updated_at
+===============
+4. Attendance
+attendance_id (PK)
+employee_id (FK to Employees.employee_id)
+date
+check_in_time
+check_out_time
+status (Present, Absent, Leave)
+created_at
+updated_at
+================
+5. Leave Management
+leave_id (PK)
+employee_id (FK to Employees.employee_id)
+leave_type (e.g., Sick Leave, Vacation, Unpaid)
+start_date
+end_date
+status (Pending, Approved, Rejected)
+approved_by (FK to Employees.employee_id)
+created_at
+updated_at
+===============
+6. Payroll
+payroll_id (PK)
+employee_id (FK to Employees.employee_id)
+salary_month
+basic_salary
+bonus
+deductions
+net_salary
+payment_date
+created_at
+updated_at
+================
+7. Performance Evaluations
+evaluation_id (PK)
+employee_id (FK to Employees.employee_id)
+evaluation_date
+evaluator_id (FK to Employees.employee_id)
+performance_rating (e.g., Excellent, Good, Needs Improvement)
+comments
+created_at
+updated_at
+==================
+8. Training & Development
+training_id (PK)
+employee_id (FK to Employees.employee_id)
+training_program
+start_date
+end_date
+status (Completed, Ongoing, Not Started)
+created_at
+updated_at
+===================
+9. Recruitment
+recruitment_id (PK)
+job_position_id (FK to JobPositions.job_position_id)
+candidate_name
+application_date
+interview_date
+status (Shortlisted, Interviewed, Hired, Rejected)
+hired_employee_id (FK to Employees.employee_id, nullable)
+created_at
+updated_at
+=================
+10. Benefits
+benefit_id (PK)
+employee_id (FK to Employees.employee_id)
+benefit_type (Health, Retirement, etc.)
+start_date
+end_date
+status (Active, Inactive)
+created_at
+updated_at
+================
+11. Projects
+project_id (PK)
+project_name
+start_date
+end_date
+status (Ongoing, Completed)
+created_at
+updated_at
+================
+12. Employee_Project
+employee_project_id (PK)
+employee_id (FK to Employees.employee_id)
+project_id (FK to Projects.project_id)
+role_on_project (Developer, Manager, etc.)
+created_at
+updated_at
+==================
+13. Roles & Permissions
+role_id (PK)
+role_name
+description
+created_at
+updated_at
+===================
+14. Employee_Roles
+employee_role_id (PK)
+employee_id (FK to Employees.employee_id)
+role_id (FK to Roles.role_id)
+created_at
+updated_at
+=================
+Relationships:
+An employee can belong to only one department, but a department can have many employees (One-to-Many).
+An employee can hold one job position, but a job position can be held by multiple employees (One-to-Many).
+An employee can be assigned to multiple projects, and a project can have multiple employees working on it (Many-to-Many).
+Payroll is tied to a specific employee, generated monthly.
+Attendance records daily check-ins/check-outs for employees.
+Leave management tracks employee leaves.
+Performance evaluations are carried out by supervisors for individual employees.
+Training keeps track of employee development.
+Recruitment tracks the hiring process for each job position.
+Employee roles are for defining access control, and roles can have different permissions across the system.
+Optional Enhancements:
+Audit Logs for tracking all system changes (who did what and when).
+Document Management for storing important employee documents (e.g., offer letters, ID proofs).
+Self-service portals for employees to view their attendance, payroll, apply for leaves, and so on.

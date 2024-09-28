@@ -1,0 +1,44 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.ide
+*.sln
+*.csproj.user
+*.csproj.lock
+HRMS/.vs
+HRMS/bin
+HRMS/Content
+HRMS/Scripts
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+bin/
+HRMS/obj/
+
+# ASP.NET specific
+packages/
+project.lock.json
+project.json
+*.pdb
+*.publishsettings
+
+# User-specific files
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+
+# Logs
+*.log
+
+# Others
+*.vspscc
+*.vssscc
+*.scc
+*.cache
+*.swp
+*.tmp
+
