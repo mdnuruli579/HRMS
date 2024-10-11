@@ -1,0 +1,1371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_ATTANDANCE">
+          <Key>
+            <PropertyRef Name="attendance_id" />
+          </Key>
+          <Property Name="attendance_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="date" Type="date" />
+          <Property Name="check_in_time" Type="time" Precision="7" />
+          <Property Name="check_out_time" Type="time" Precision="7" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_BENEFIT">
+          <Key>
+            <PropertyRef Name="benefit_id" />
+          </Key>
+          <Property Name="benefit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="benefit_type" Type="int" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="end_date" Type="date" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="department_id" />
+          </Key>
+          <Property Name="department_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department_name" Type="varchar" MaxLength="20" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="manager_id" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="20" />
+          <Property Name="last_name" Type="varchar" MaxLength="20" />
+          <Property Name="date_of_birth" Type="date" />
+          <Property Name="gender" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+          <Property Name="department_id" Type="int" />
+          <Property Name="job_position_id" Type="int" />
+          <Property Name="date_of_joining" Type="date" />
+          <Property Name="employment_status" Type="int" />
+          <Property Name="supervisor_id" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="terminations_date" Type="date" />
+        </EntityType>
+        <EntityType Name="TB_EMPLOYEE_PROJECT">
+          <Key>
+            <PropertyRef Name="employee_project_id" />
+          </Key>
+          <Property Name="employee_project_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="project_id" Type="int" />
+          <Property Name="role_on_project" Type="int" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_EMPLOYEE_ROLE">
+          <Key>
+            <PropertyRef Name="employee_role_id" />
+          </Key>
+          <Property Name="employee_role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="role_id" Type="int" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_JOB_POSITION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="20" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+          <Property Name="min_salary" Type="int" />
+          <Property Name="max_salary" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_LEAVE_MANAGEMENT">
+          <Key>
+            <PropertyRef Name="leave_id" />
+          </Key>
+          <Property Name="leave_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="leave_type" Type="varchar" MaxLength="20" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="end_date" Type="datetime" />
+          <Property Name="status" Type="int" />
+          <Property Name="approved_by" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_PAYROLL">
+          <Key>
+            <PropertyRef Name="payroll_id" />
+          </Key>
+          <Property Name="payroll_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="salary_month" Type="int" Nullable="false" />
+          <Property Name="basic_salary" Type="int" Nullable="false" />
+          <Property Name="bonus" Type="int" />
+          <Property Name="deductions" Type="int" />
+          <Property Name="net_salary" Type="int" Nullable="false" />
+          <Property Name="payment_date" Type="datetime" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_PERFOMANCE_EVALUATION">
+          <Key>
+            <PropertyRef Name="evaluation_id" />
+          </Key>
+          <Property Name="evaluation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="evaluation_date" Type="date" />
+          <Property Name="evaluator_id" Type="int" />
+          <Property Name="performance_rating" Type="int" />
+          <Property Name="comments" Type="varchar" MaxLength="50" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_PROJECTS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="project_name" Type="varchar" MaxLength="20" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="end_date" Type="date" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_RECRUITMENT">
+          <Key>
+            <PropertyRef Name="recruitment_id" />
+          </Key>
+          <Property Name="recruitment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="job_position_id" Type="int" />
+          <Property Name="candidate_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="application_date" Type="datetime" Nullable="false" />
+          <Property Name="interview_date" Type="datetime" />
+          <Property Name="status" Type="int" />
+          <Property Name="hired_employee_id" Type="int" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_ROLE">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="20" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_TRANING_AND_DEVELOPMENT">
+          <Key>
+            <PropertyRef Name="training_id" />
+          </Key>
+          <Property Name="training_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="training_program" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <Association Name="FK__TB_ATTAND__emplo__5CD6CB2B">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_ATTANDANCE" Type="Self.TB_ATTANDANCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_ATTANDANCE">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_BENEFI__emplo__72C60C4A">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_BENEFIT" Type="Self.TB_BENEFIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_BENEFIT">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__depar__571DF1D5">
+          <End Role="TB_DEPARTMENT" Type="Self.TB_DEPARTMENT" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTMENT">
+              <PropertyRef Name="department_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__emplo__76969D2E">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE_PROJECT" Type="Self.TB_EMPLOYEE_PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE_PROJECT">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__emplo__7A672E12">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE_ROLE" Type="Self.TB_EMPLOYEE_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE_ROLE">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__job_p__5812160E">
+          <End Role="TB_JOB_POSITION" Type="Self.TB_JOB_POSITION" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_JOB_POSITION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE">
+              <PropertyRef Name="job_position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__proje__778AC167">
+          <End Role="TB_PROJECTS" Type="Self.TB_PROJECTS" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE_PROJECT" Type="Self.TB_EMPLOYEE_PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJECTS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE_PROJECT">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__role___7B5B524B">
+          <End Role="TB_ROLE" Type="Self.TB_ROLE" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE_ROLE" Type="Self.TB_EMPLOYEE_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_ROLE">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE_ROLE">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__super__59063A47">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE1" Type="Self.TB_EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE1">
+              <PropertyRef Name="supervisor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LEAVE___appro__60A75C0F">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_LEAVE_MANAGEMENT" Type="Self.TB_LEAVE_MANAGEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_LEAVE_MANAGEMENT">
+              <PropertyRef Name="approved_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LEAVE___emplo__5FB337D6">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_LEAVE_MANAGEMENT" Type="Self.TB_LEAVE_MANAGEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_LEAVE_MANAGEMENT">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PAYROL__emplo__6383C8BA">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_PAYROLL" Type="Self.TB_PAYROLL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_PAYROLL">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFOM__emplo__68487DD7">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_PERFOMANCE_EVALUATION" Type="Self.TB_PERFOMANCE_EVALUATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_PERFOMANCE_EVALUATION">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFOM__evalu__693CA210">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_PERFOMANCE_EVALUATION" Type="Self.TB_PERFOMANCE_EVALUATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_PERFOMANCE_EVALUATION">
+              <PropertyRef Name="evaluator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_RECRUI__hired__6FE99F9F">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_RECRUITMENT" Type="Self.TB_RECRUITMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_RECRUITMENT">
+              <PropertyRef Name="hired_employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_RECRUI__job_p__6EF57B66">
+          <End Role="TB_JOB_POSITION" Type="Self.TB_JOB_POSITION" Multiplicity="0..1" />
+          <End Role="TB_RECRUITMENT" Type="Self.TB_RECRUITMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_JOB_POSITION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TB_RECRUITMENT">
+              <PropertyRef Name="job_position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANIN__emplo__6C190EBB">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_TRANING_AND_DEVELOPMENT" Type="Self.TB_TRANING_AND_DEVELOPMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_TRANING_AND_DEVELOPMENT">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="manager_id">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_DEPARTMENT" Type="Self.TB_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_DEPARTMENT">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_GET_EMPLOYEE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_INSERT_EMP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="first_name" Type="varchar" Mode="In" />
+          <Parameter Name="last_name" Type="varchar" Mode="In" />
+          <Parameter Name="date_of_birth" Type="date" Mode="In" />
+          <Parameter Name="gender" Type="int" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="department_id" Type="int" Mode="In" />
+          <Parameter Name="job_position_id" Type="int" Mode="In" />
+          <Parameter Name="date_of_joining" Type="date" Mode="In" />
+          <Parameter Name="employment_status" Type="int" Mode="In" />
+          <Parameter Name="supervisor_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPEMPLOYEE_OVERVIEW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="HRMSModelStoreContainer">
+          <EntitySet Name="TB_ATTANDANCE" EntityType="Self.TB_ATTANDANCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_BENEFIT" EntityType="Self.TB_BENEFIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_DEPARTMENT" EntityType="Self.TB_DEPARTMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_EMPLOYEE" EntityType="Self.TB_EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_EMPLOYEE_PROJECT" EntityType="Self.TB_EMPLOYEE_PROJECT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_EMPLOYEE_ROLE" EntityType="Self.TB_EMPLOYEE_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_JOB_POSITION" EntityType="Self.TB_JOB_POSITION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_LEAVE_MANAGEMENT" EntityType="Self.TB_LEAVE_MANAGEMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PAYROLL" EntityType="Self.TB_PAYROLL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PERFOMANCE_EVALUATION" EntityType="Self.TB_PERFOMANCE_EVALUATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PROJECTS" EntityType="Self.TB_PROJECTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_RECRUITMENT" EntityType="Self.TB_RECRUITMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_ROLE" EntityType="Self.TB_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TRANING_AND_DEVELOPMENT" EntityType="Self.TB_TRANING_AND_DEVELOPMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_USER" EntityType="Self.TB_USER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TB_ATTAND__emplo__5CD6CB2B" Association="Self.FK__TB_ATTAND__emplo__5CD6CB2B">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_ATTANDANCE" EntitySet="TB_ATTANDANCE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_BENEFI__emplo__72C60C4A" Association="Self.FK__TB_BENEFI__emplo__72C60C4A">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_BENEFIT" EntitySet="TB_BENEFIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__depar__571DF1D5" Association="Self.FK__TB_EMPLOY__depar__571DF1D5">
+            <End Role="TB_DEPARTMENT" EntitySet="TB_DEPARTMENT" />
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__emplo__76969D2E" Association="Self.FK__TB_EMPLOY__emplo__76969D2E">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_EMPLOYEE_PROJECT" EntitySet="TB_EMPLOYEE_PROJECT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__emplo__7A672E12" Association="Self.FK__TB_EMPLOY__emplo__7A672E12">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_EMPLOYEE_ROLE" EntitySet="TB_EMPLOYEE_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__job_p__5812160E" Association="Self.FK__TB_EMPLOY__job_p__5812160E">
+            <End Role="TB_JOB_POSITION" EntitySet="TB_JOB_POSITION" />
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__proje__778AC167" Association="Self.FK__TB_EMPLOY__proje__778AC167">
+            <End Role="TB_PROJECTS" EntitySet="TB_PROJECTS" />
+            <End Role="TB_EMPLOYEE_PROJECT" EntitySet="TB_EMPLOYEE_PROJECT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__role___7B5B524B" Association="Self.FK__TB_EMPLOY__role___7B5B524B">
+            <End Role="TB_ROLE" EntitySet="TB_ROLE" />
+            <End Role="TB_EMPLOYEE_ROLE" EntitySet="TB_EMPLOYEE_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__super__59063A47" Association="Self.FK__TB_EMPLOY__super__59063A47">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_EMPLOYEE1" EntitySet="TB_EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LEAVE___appro__60A75C0F" Association="Self.FK__TB_LEAVE___appro__60A75C0F">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_LEAVE_MANAGEMENT" EntitySet="TB_LEAVE_MANAGEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LEAVE___emplo__5FB337D6" Association="Self.FK__TB_LEAVE___emplo__5FB337D6">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_LEAVE_MANAGEMENT" EntitySet="TB_LEAVE_MANAGEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PAYROL__emplo__6383C8BA" Association="Self.FK__TB_PAYROL__emplo__6383C8BA">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_PAYROLL" EntitySet="TB_PAYROLL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFOM__emplo__68487DD7" Association="Self.FK__TB_PERFOM__emplo__68487DD7">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_PERFOMANCE_EVALUATION" EntitySet="TB_PERFOMANCE_EVALUATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFOM__evalu__693CA210" Association="Self.FK__TB_PERFOM__evalu__693CA210">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_PERFOMANCE_EVALUATION" EntitySet="TB_PERFOMANCE_EVALUATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_RECRUI__hired__6FE99F9F" Association="Self.FK__TB_RECRUI__hired__6FE99F9F">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_RECRUITMENT" EntitySet="TB_RECRUITMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_RECRUI__job_p__6EF57B66" Association="Self.FK__TB_RECRUI__job_p__6EF57B66">
+            <End Role="TB_JOB_POSITION" EntitySet="TB_JOB_POSITION" />
+            <End Role="TB_RECRUITMENT" EntitySet="TB_RECRUITMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANIN__emplo__6C190EBB" Association="Self.FK__TB_TRANIN__emplo__6C190EBB">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_TRANING_AND_DEVELOPMENT" EntitySet="TB_TRANING_AND_DEVELOPMENT" />
+          </AssociationSet>
+          <AssociationSet Name="manager_id" Association="Self.manager_id">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_DEPARTMENT" EntitySet="TB_DEPARTMENT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_ATTANDANCE">
+          <Key>
+            <PropertyRef Name="attendance_id" />
+          </Key>
+          <Property Name="attendance_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="check_in_time" Type="Time" Precision="7" />
+          <Property Name="check_out_time" Type="Time" Precision="7" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_ATTAND__emplo__5CD6CB2B" FromRole="TB_ATTANDANCE" ToRole="TB_EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="TB_BENEFIT">
+          <Key>
+            <PropertyRef Name="benefit_id" />
+          </Key>
+          <Property Name="benefit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="benefit_type" Type="Int32" />
+          <Property Name="start_date" Type="DateTime" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_BENEFI__emplo__72C60C4A" FromRole="TB_BENEFIT" ToRole="TB_EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="TB_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="department_id" />
+          </Key>
+          <Property Name="department_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="manager_id" Type="Int32" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_EMPLOY__depar__571DF1D5" FromRole="TB_DEPARTMENT" ToRole="TB_EMPLOYEE" />
+          <NavigationProperty Name="TB_EMPLOYEE1" Relationship="Self.manager_id" FromRole="TB_DEPARTMENT" ToRole="TB_EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="TB_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="department_id" Type="Int32" />
+          <Property Name="job_position_id" Type="Int32" />
+          <Property Name="date_of_joining" Type="DateTime" Precision="0" />
+          <Property Name="employment_status" Type="Int32" />
+          <Property Name="supervisor_id" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="terminations_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TB_ATTANDANCE" Relationship="Self.FK__TB_ATTAND__emplo__5CD6CB2B" FromRole="TB_EMPLOYEE" ToRole="TB_ATTANDANCE" />
+          <NavigationProperty Name="TB_BENEFIT" Relationship="Self.FK__TB_BENEFI__emplo__72C60C4A" FromRole="TB_EMPLOYEE" ToRole="TB_BENEFIT" />
+          <NavigationProperty Name="TB_DEPARTMENT" Relationship="Self.FK__TB_EMPLOY__depar__571DF1D5" FromRole="TB_EMPLOYEE" ToRole="TB_DEPARTMENT" />
+          <NavigationProperty Name="TB_DEPARTMENT1" Relationship="Self.manager_id" FromRole="TB_EMPLOYEE" ToRole="TB_DEPARTMENT" />
+          <NavigationProperty Name="TB_EMPLOYEE_PROJECT" Relationship="Self.FK__TB_EMPLOY__emplo__76969D2E" FromRole="TB_EMPLOYEE" ToRole="TB_EMPLOYEE_PROJECT" />
+          <NavigationProperty Name="TB_EMPLOYEE_ROLE" Relationship="Self.FK__TB_EMPLOY__emplo__7A672E12" FromRole="TB_EMPLOYEE" ToRole="TB_EMPLOYEE_ROLE" />
+          <NavigationProperty Name="TB_JOB_POSITION" Relationship="Self.FK__TB_EMPLOY__job_p__5812160E" FromRole="TB_EMPLOYEE" ToRole="TB_JOB_POSITION" />
+          <NavigationProperty Name="TB_EMPLOYEE1" Relationship="Self.FK__TB_EMPLOY__super__59063A47" FromRole="TB_EMPLOYEE" ToRole="TB_EMPLOYEE1" />
+          <NavigationProperty Name="TB_EMPLOYEE2" Relationship="Self.FK__TB_EMPLOY__super__59063A47" FromRole="TB_EMPLOYEE1" ToRole="TB_EMPLOYEE" />
+          <NavigationProperty Name="TB_LEAVE_MANAGEMENT" Relationship="Self.FK__TB_LEAVE___appro__60A75C0F" FromRole="TB_EMPLOYEE" ToRole="TB_LEAVE_MANAGEMENT" />
+          <NavigationProperty Name="TB_LEAVE_MANAGEMENT1" Relationship="Self.FK__TB_LEAVE___emplo__5FB337D6" FromRole="TB_EMPLOYEE" ToRole="TB_LEAVE_MANAGEMENT" />
+          <NavigationProperty Name="TB_PAYROLL" Relationship="Self.FK__TB_PAYROL__emplo__6383C8BA" FromRole="TB_EMPLOYEE" ToRole="TB_PAYROLL" />
+          <NavigationProperty Name="TB_PERFOMANCE_EVALUATION" Relationship="Self.FK__TB_PERFOM__emplo__68487DD7" FromRole="TB_EMPLOYEE" ToRole="TB_PERFOMANCE_EVALUATION" />
+          <NavigationProperty Name="TB_PERFOMANCE_EVALUATION1" Relationship="Self.FK__TB_PERFOM__evalu__693CA210" FromRole="TB_EMPLOYEE" ToRole="TB_PERFOMANCE_EVALUATION" />
+          <NavigationProperty Name="TB_RECRUITMENT" Relationship="Self.FK__TB_RECRUI__hired__6FE99F9F" FromRole="TB_EMPLOYEE" ToRole="TB_RECRUITMENT" />
+          <NavigationProperty Name="TB_TRANING_AND_DEVELOPMENT" Relationship="Self.FK__TB_TRANIN__emplo__6C190EBB" FromRole="TB_EMPLOYEE" ToRole="TB_TRANING_AND_DEVELOPMENT" />
+        </EntityType>
+        <EntityType Name="TB_EMPLOYEE_PROJECT">
+          <Key>
+            <PropertyRef Name="employee_project_id" />
+          </Key>
+          <Property Name="employee_project_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="project_id" Type="Int32" />
+          <Property Name="role_on_project" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_EMPLOY__emplo__76969D2E" FromRole="TB_EMPLOYEE_PROJECT" ToRole="TB_EMPLOYEE" />
+          <NavigationProperty Name="TB_PROJECTS" Relationship="Self.FK__TB_EMPLOY__proje__778AC167" FromRole="TB_EMPLOYEE_PROJECT" ToRole="TB_PROJECTS" />
+        </EntityType>
+        <EntityType Name="TB_EMPLOYEE_ROLE">
+          <Key>
+            <PropertyRef Name="employee_role_id" />
+          </Key>
+          <Property Name="employee_role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="role_id" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_EMPLOY__emplo__7A672E12" FromRole="TB_EMPLOYEE_ROLE" ToRole="TB_EMPLOYEE" />
+          <NavigationProperty Name="TB_ROLE" Relationship="Self.FK__TB_EMPLOY__role___7B5B524B" FromRole="TB_EMPLOYEE_ROLE" ToRole="TB_ROLE" />
+        </EntityType>
+        <EntityType Name="TB_JOB_POSITION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="min_salary" Type="Int32" />
+          <Property Name="max_salary" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_EMPLOY__job_p__5812160E" FromRole="TB_JOB_POSITION" ToRole="TB_EMPLOYEE" />
+          <NavigationProperty Name="TB_RECRUITMENT" Relationship="Self.FK__TB_RECRUI__job_p__6EF57B66" FromRole="TB_JOB_POSITION" ToRole="TB_RECRUITMENT" />
+        </EntityType>
+        <EntityType Name="TB_LEAVE_MANAGEMENT">
+          <Key>
+            <PropertyRef Name="leave_id" />
+          </Key>
+          <Property Name="leave_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="leave_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="start_date" Type="DateTime" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="approved_by" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_LEAVE___appro__60A75C0F" FromRole="TB_LEAVE_MANAGEMENT" ToRole="TB_EMPLOYEE" />
+          <NavigationProperty Name="TB_EMPLOYEE1" Relationship="Self.FK__TB_LEAVE___emplo__5FB337D6" FromRole="TB_LEAVE_MANAGEMENT" ToRole="TB_EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="TB_PAYROLL">
+          <Key>
+            <PropertyRef Name="payroll_id" />
+          </Key>
+          <Property Name="payroll_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="salary_month" Type="Int32" Nullable="false" />
+          <Property Name="basic_salary" Type="Int32" Nullable="false" />
+          <Property Name="bonus" Type="Int32" />
+          <Property Name="deductions" Type="Int32" />
+          <Property Name="net_salary" Type="Int32" Nullable="false" />
+          <Property Name="payment_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_PAYROL__emplo__6383C8BA" FromRole="TB_PAYROLL" ToRole="TB_EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="TB_PERFOMANCE_EVALUATION">
+          <Key>
+            <PropertyRef Name="evaluation_id" />
+          </Key>
+          <Property Name="evaluation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="evaluation_date" Type="DateTime" Precision="0" />
+          <Property Name="evaluator_id" Type="Int32" />
+          <Property Name="performance_rating" Type="Int32" />
+          <Property Name="comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_PERFOM__emplo__68487DD7" FromRole="TB_PERFOMANCE_EVALUATION" ToRole="TB_EMPLOYEE" />
+          <NavigationProperty Name="TB_EMPLOYEE1" Relationship="Self.FK__TB_PERFOM__evalu__693CA210" FromRole="TB_PERFOMANCE_EVALUATION" ToRole="TB_EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="TB_PROJECTS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="start_date" Type="DateTime" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE_PROJECT" Relationship="Self.FK__TB_EMPLOY__proje__778AC167" FromRole="TB_PROJECTS" ToRole="TB_EMPLOYEE_PROJECT" />
+        </EntityType>
+        <EntityType Name="TB_RECRUITMENT">
+          <Key>
+            <PropertyRef Name="recruitment_id" />
+          </Key>
+          <Property Name="recruitment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="job_position_id" Type="Int32" />
+          <Property Name="candidate_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="application_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="interview_date" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="hired_employee_id" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_RECRUI__hired__6FE99F9F" FromRole="TB_RECRUITMENT" ToRole="TB_EMPLOYEE" />
+          <NavigationProperty Name="TB_JOB_POSITION" Relationship="Self.FK__TB_RECRUI__job_p__6EF57B66" FromRole="TB_RECRUITMENT" ToRole="TB_JOB_POSITION" />
+        </EntityType>
+        <EntityType Name="TB_ROLE">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE_ROLE" Relationship="Self.FK__TB_EMPLOY__role___7B5B524B" FromRole="TB_ROLE" ToRole="TB_EMPLOYEE_ROLE" />
+        </EntityType>
+        <EntityType Name="TB_TRANING_AND_DEVELOPMENT">
+          <Key>
+            <PropertyRef Name="training_id" />
+          </Key>
+          <Property Name="training_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="training_program" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_EMPLOYEE" Relationship="Self.FK__TB_TRANIN__emplo__6C190EBB" FromRole="TB_TRANING_AND_DEVELOPMENT" ToRole="TB_EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="TB_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__TB_ATTAND__emplo__5CD6CB2B">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_ATTANDANCE" Type="Self.TB_ATTANDANCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_ATTANDANCE">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_BENEFI__emplo__72C60C4A">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_BENEFIT" Type="Self.TB_BENEFIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_BENEFIT">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__depar__571DF1D5">
+          <End Role="TB_DEPARTMENT" Type="Self.TB_DEPARTMENT" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTMENT">
+              <PropertyRef Name="department_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="manager_id">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_DEPARTMENT" Type="Self.TB_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_DEPARTMENT">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__emplo__76969D2E">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE_PROJECT" Type="Self.TB_EMPLOYEE_PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE_PROJECT">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__emplo__7A672E12">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE_ROLE" Type="Self.TB_EMPLOYEE_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE_ROLE">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__job_p__5812160E">
+          <End Role="TB_JOB_POSITION" Type="Self.TB_JOB_POSITION" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_JOB_POSITION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE">
+              <PropertyRef Name="job_position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__super__59063A47">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE1" Type="Self.TB_EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE1">
+              <PropertyRef Name="supervisor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LEAVE___appro__60A75C0F">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_LEAVE_MANAGEMENT" Type="Self.TB_LEAVE_MANAGEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_LEAVE_MANAGEMENT">
+              <PropertyRef Name="approved_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LEAVE___emplo__5FB337D6">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_LEAVE_MANAGEMENT" Type="Self.TB_LEAVE_MANAGEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_LEAVE_MANAGEMENT">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PAYROL__emplo__6383C8BA">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_PAYROLL" Type="Self.TB_PAYROLL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_PAYROLL">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFOM__emplo__68487DD7">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_PERFOMANCE_EVALUATION" Type="Self.TB_PERFOMANCE_EVALUATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_PERFOMANCE_EVALUATION">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PERFOM__evalu__693CA210">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_PERFOMANCE_EVALUATION" Type="Self.TB_PERFOMANCE_EVALUATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_PERFOMANCE_EVALUATION">
+              <PropertyRef Name="evaluator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_RECRUI__hired__6FE99F9F">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_RECRUITMENT" Type="Self.TB_RECRUITMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_RECRUITMENT">
+              <PropertyRef Name="hired_employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_TRANIN__emplo__6C190EBB">
+          <End Role="TB_EMPLOYEE" Type="Self.TB_EMPLOYEE" Multiplicity="0..1" />
+          <End Role="TB_TRANING_AND_DEVELOPMENT" Type="Self.TB_TRANING_AND_DEVELOPMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_EMPLOYEE">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="TB_TRANING_AND_DEVELOPMENT">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__proje__778AC167">
+          <End Role="TB_PROJECTS" Type="Self.TB_PROJECTS" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE_PROJECT" Type="Self.TB_EMPLOYEE_PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJECTS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE_PROJECT">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_EMPLOY__role___7B5B524B">
+          <End Role="TB_ROLE" Type="Self.TB_ROLE" Multiplicity="0..1" />
+          <End Role="TB_EMPLOYEE_ROLE" Type="Self.TB_EMPLOYEE_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_ROLE">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="TB_EMPLOYEE_ROLE">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_RECRUI__job_p__6EF57B66">
+          <End Role="TB_JOB_POSITION" Type="Self.TB_JOB_POSITION" Multiplicity="0..1" />
+          <End Role="TB_RECRUITMENT" Type="Self.TB_RECRUITMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_JOB_POSITION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TB_RECRUITMENT">
+              <PropertyRef Name="job_position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_ATTANDANCE" EntityType="Self.TB_ATTANDANCE" />
+          <EntitySet Name="TB_BENEFIT" EntityType="Self.TB_BENEFIT" />
+          <EntitySet Name="TB_DEPARTMENT" EntityType="Self.TB_DEPARTMENT" />
+          <EntitySet Name="TB_EMPLOYEE" EntityType="Self.TB_EMPLOYEE" />
+          <EntitySet Name="TB_EMPLOYEE_PROJECT" EntityType="Self.TB_EMPLOYEE_PROJECT" />
+          <EntitySet Name="TB_EMPLOYEE_ROLE" EntityType="Self.TB_EMPLOYEE_ROLE" />
+          <EntitySet Name="TB_JOB_POSITION" EntityType="Self.TB_JOB_POSITION" />
+          <EntitySet Name="TB_LEAVE_MANAGEMENT" EntityType="Self.TB_LEAVE_MANAGEMENT" />
+          <EntitySet Name="TB_PAYROLL" EntityType="Self.TB_PAYROLL" />
+          <EntitySet Name="TB_PERFOMANCE_EVALUATION" EntityType="Self.TB_PERFOMANCE_EVALUATION" />
+          <EntitySet Name="TB_PROJECTS" EntityType="Self.TB_PROJECTS" />
+          <EntitySet Name="TB_RECRUITMENT" EntityType="Self.TB_RECRUITMENT" />
+          <EntitySet Name="TB_ROLE" EntityType="Self.TB_ROLE" />
+          <EntitySet Name="TB_TRANING_AND_DEVELOPMENT" EntityType="Self.TB_TRANING_AND_DEVELOPMENT" />
+          <EntitySet Name="TB_USER" EntityType="Self.TB_USER" />
+          <AssociationSet Name="FK__TB_ATTAND__emplo__5CD6CB2B" Association="Self.FK__TB_ATTAND__emplo__5CD6CB2B">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_ATTANDANCE" EntitySet="TB_ATTANDANCE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_BENEFI__emplo__72C60C4A" Association="Self.FK__TB_BENEFI__emplo__72C60C4A">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_BENEFIT" EntitySet="TB_BENEFIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__depar__571DF1D5" Association="Self.FK__TB_EMPLOY__depar__571DF1D5">
+            <End Role="TB_DEPARTMENT" EntitySet="TB_DEPARTMENT" />
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="manager_id" Association="Self.manager_id">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_DEPARTMENT" EntitySet="TB_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__emplo__76969D2E" Association="Self.FK__TB_EMPLOY__emplo__76969D2E">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_EMPLOYEE_PROJECT" EntitySet="TB_EMPLOYEE_PROJECT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__emplo__7A672E12" Association="Self.FK__TB_EMPLOY__emplo__7A672E12">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_EMPLOYEE_ROLE" EntitySet="TB_EMPLOYEE_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__job_p__5812160E" Association="Self.FK__TB_EMPLOY__job_p__5812160E">
+            <End Role="TB_JOB_POSITION" EntitySet="TB_JOB_POSITION" />
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__super__59063A47" Association="Self.FK__TB_EMPLOY__super__59063A47">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_EMPLOYEE1" EntitySet="TB_EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LEAVE___appro__60A75C0F" Association="Self.FK__TB_LEAVE___appro__60A75C0F">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_LEAVE_MANAGEMENT" EntitySet="TB_LEAVE_MANAGEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LEAVE___emplo__5FB337D6" Association="Self.FK__TB_LEAVE___emplo__5FB337D6">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_LEAVE_MANAGEMENT" EntitySet="TB_LEAVE_MANAGEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PAYROL__emplo__6383C8BA" Association="Self.FK__TB_PAYROL__emplo__6383C8BA">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_PAYROLL" EntitySet="TB_PAYROLL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFOM__emplo__68487DD7" Association="Self.FK__TB_PERFOM__emplo__68487DD7">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_PERFOMANCE_EVALUATION" EntitySet="TB_PERFOMANCE_EVALUATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PERFOM__evalu__693CA210" Association="Self.FK__TB_PERFOM__evalu__693CA210">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_PERFOMANCE_EVALUATION" EntitySet="TB_PERFOMANCE_EVALUATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_RECRUI__hired__6FE99F9F" Association="Self.FK__TB_RECRUI__hired__6FE99F9F">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_RECRUITMENT" EntitySet="TB_RECRUITMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_TRANIN__emplo__6C190EBB" Association="Self.FK__TB_TRANIN__emplo__6C190EBB">
+            <End Role="TB_EMPLOYEE" EntitySet="TB_EMPLOYEE" />
+            <End Role="TB_TRANING_AND_DEVELOPMENT" EntitySet="TB_TRANING_AND_DEVELOPMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__proje__778AC167" Association="Self.FK__TB_EMPLOY__proje__778AC167">
+            <End Role="TB_PROJECTS" EntitySet="TB_PROJECTS" />
+            <End Role="TB_EMPLOYEE_PROJECT" EntitySet="TB_EMPLOYEE_PROJECT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_EMPLOY__role___7B5B524B" Association="Self.FK__TB_EMPLOY__role___7B5B524B">
+            <End Role="TB_ROLE" EntitySet="TB_ROLE" />
+            <End Role="TB_EMPLOYEE_ROLE" EntitySet="TB_EMPLOYEE_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_RECRUI__job_p__6EF57B66" Association="Self.FK__TB_RECRUI__job_p__6EF57B66">
+            <End Role="TB_JOB_POSITION" EntitySet="TB_JOB_POSITION" />
+            <End Role="TB_RECRUITMENT" EntitySet="TB_RECRUITMENT" />
+          </AssociationSet>
+          <FunctionImport Name="SP_INSERT_EMP">
+            <Parameter Name="first_name" Mode="In" Type="String" />
+            <Parameter Name="last_name" Mode="In" Type="String" />
+            <Parameter Name="date_of_birth" Mode="In" Type="DateTime" />
+            <Parameter Name="gender" Mode="In" Type="Int32" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="department_id" Mode="In" Type="Int32" />
+            <Parameter Name="job_position_id" Mode="In" Type="Int32" />
+            <Parameter Name="date_of_joining" Mode="In" Type="DateTime" />
+            <Parameter Name="employment_status" Mode="In" Type="Int32" />
+            <Parameter Name="supervisor_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPEMPLOYEE_OVERVIEW" ReturnType="Collection(HRMSModel.SPEMPLOYEE_OVERVIEW_Result)" />
+          <FunctionImport Name="SP_GET_EMPLOYEE" ReturnType="Collection(HRMSModel.SP_GET_EMPLOYEE_Result)" />
+        </EntityContainer>
+        <ComplexType Name="SPEMPLOYEE_OVERVIEW_Result">
+          <Property Type="Int32" Name="total_employees" Nullable="true" />
+          <Property Type="Int32" Name="joined_this_month" Nullable="true" />
+          <Property Type="Int32" Name="terminated_this_month" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_EMPLOYEE_Result">
+          <Property Type="Int32" Name="employee_id" Nullable="false" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="date_of_birth" Nullable="true" />
+          <Property Type="Int32" Name="gender" Nullable="true" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="phone" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="date_of_joining" Nullable="true" />
+          <Property Type="Int32" Name="employment_status" Nullable="true" />
+          <Property Type="Int32" Name="supervisor_id" Nullable="true" />
+          <Property Type="DateTime" Name="created_at" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="department_id" Nullable="false" />
+          <Property Type="String" Name="department_name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="job_pos_id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRMSModelStoreContainer" CdmEntityContainer="HRMSEntities">
+          <EntitySetMapping Name="TB_ATTANDANCE">
+            <EntityTypeMapping TypeName="HRMSModel.TB_ATTANDANCE">
+              <MappingFragment StoreEntitySet="TB_ATTANDANCE">
+                <ScalarProperty Name="attendance_id" ColumnName="attendance_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="check_in_time" ColumnName="check_in_time" />
+                <ScalarProperty Name="check_out_time" ColumnName="check_out_time" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_BENEFIT">
+            <EntityTypeMapping TypeName="HRMSModel.TB_BENEFIT">
+              <MappingFragment StoreEntitySet="TB_BENEFIT">
+                <ScalarProperty Name="benefit_id" ColumnName="benefit_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="benefit_type" ColumnName="benefit_type" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DEPARTMENT">
+            <EntityTypeMapping TypeName="HRMSModel.TB_DEPARTMENT">
+              <MappingFragment StoreEntitySet="TB_DEPARTMENT">
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_EMPLOYEE">
+            <EntityTypeMapping TypeName="HRMSModel.TB_EMPLOYEE">
+              <MappingFragment StoreEntitySet="TB_EMPLOYEE">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="job_position_id" ColumnName="job_position_id" />
+                <ScalarProperty Name="date_of_joining" ColumnName="date_of_joining" />
+                <ScalarProperty Name="employment_status" ColumnName="employment_status" />
+                <ScalarProperty Name="supervisor_id" ColumnName="supervisor_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="terminations_date" ColumnName="terminations_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_EMPLOYEE_PROJECT">
+            <EntityTypeMapping TypeName="HRMSModel.TB_EMPLOYEE_PROJECT">
+              <MappingFragment StoreEntitySet="TB_EMPLOYEE_PROJECT">
+                <ScalarProperty Name="employee_project_id" ColumnName="employee_project_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="role_on_project" ColumnName="role_on_project" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_EMPLOYEE_ROLE">
+            <EntityTypeMapping TypeName="HRMSModel.TB_EMPLOYEE_ROLE">
+              <MappingFragment StoreEntitySet="TB_EMPLOYEE_ROLE">
+                <ScalarProperty Name="employee_role_id" ColumnName="employee_role_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_JOB_POSITION">
+            <EntityTypeMapping TypeName="HRMSModel.TB_JOB_POSITION">
+              <MappingFragment StoreEntitySet="TB_JOB_POSITION">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="min_salary" ColumnName="min_salary" />
+                <ScalarProperty Name="max_salary" ColumnName="max_salary" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_LEAVE_MANAGEMENT">
+            <EntityTypeMapping TypeName="HRMSModel.TB_LEAVE_MANAGEMENT">
+              <MappingFragment StoreEntitySet="TB_LEAVE_MANAGEMENT">
+                <ScalarProperty Name="leave_id" ColumnName="leave_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="leave_type" ColumnName="leave_type" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PAYROLL">
+            <EntityTypeMapping TypeName="HRMSModel.TB_PAYROLL">
+              <MappingFragment StoreEntitySet="TB_PAYROLL">
+                <ScalarProperty Name="payroll_id" ColumnName="payroll_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="salary_month" ColumnName="salary_month" />
+                <ScalarProperty Name="basic_salary" ColumnName="basic_salary" />
+                <ScalarProperty Name="bonus" ColumnName="bonus" />
+                <ScalarProperty Name="deductions" ColumnName="deductions" />
+                <ScalarProperty Name="net_salary" ColumnName="net_salary" />
+                <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PERFOMANCE_EVALUATION">
+            <EntityTypeMapping TypeName="HRMSModel.TB_PERFOMANCE_EVALUATION">
+              <MappingFragment StoreEntitySet="TB_PERFOMANCE_EVALUATION">
+                <ScalarProperty Name="evaluation_id" ColumnName="evaluation_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="evaluation_date" ColumnName="evaluation_date" />
+                <ScalarProperty Name="evaluator_id" ColumnName="evaluator_id" />
+                <ScalarProperty Name="performance_rating" ColumnName="performance_rating" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PROJECTS">
+            <EntityTypeMapping TypeName="HRMSModel.TB_PROJECTS">
+              <MappingFragment StoreEntitySet="TB_PROJECTS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="project_name" ColumnName="project_name" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_RECRUITMENT">
+            <EntityTypeMapping TypeName="HRMSModel.TB_RECRUITMENT">
+              <MappingFragment StoreEntitySet="TB_RECRUITMENT">
+                <ScalarProperty Name="recruitment_id" ColumnName="recruitment_id" />
+                <ScalarProperty Name="job_position_id" ColumnName="job_position_id" />
+                <ScalarProperty Name="candidate_name" ColumnName="candidate_name" />
+                <ScalarProperty Name="application_date" ColumnName="application_date" />
+                <ScalarProperty Name="interview_date" ColumnName="interview_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="hired_employee_id" ColumnName="hired_employee_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_ROLE">
+            <EntityTypeMapping TypeName="HRMSModel.TB_ROLE">
+              <MappingFragment StoreEntitySet="TB_ROLE">
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TRANING_AND_DEVELOPMENT">
+            <EntityTypeMapping TypeName="HRMSModel.TB_TRANING_AND_DEVELOPMENT">
+              <MappingFragment StoreEntitySet="TB_TRANING_AND_DEVELOPMENT">
+                <ScalarProperty Name="training_id" ColumnName="training_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="training_program" ColumnName="training_program" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_USER">
+            <EntityTypeMapping TypeName="HRMSModel.TB_USER">
+              <MappingFragment StoreEntitySet="TB_USER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_INSERT_EMP" FunctionName="HRMSModel.Store.SP_INSERT_EMP" />
+          <FunctionImportMapping FunctionImportName="SPEMPLOYEE_OVERVIEW" FunctionName="HRMSModel.Store.SPEMPLOYEE_OVERVIEW">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HRMSModel.SPEMPLOYEE_OVERVIEW_Result">
+                <ScalarProperty Name="total_employees" ColumnName="total_employees" />
+                <ScalarProperty Name="joined_this_month" ColumnName="joined_this_month" />
+                <ScalarProperty Name="terminated_this_month" ColumnName="terminated_this_month" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_EMPLOYEE" FunctionName="HRMSModel.Store.SP_GET_EMPLOYEE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HRMSModel.SP_GET_EMPLOYEE_Result">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="date_of_joining" ColumnName="date_of_joining" />
+                <ScalarProperty Name="employment_status" ColumnName="employment_status" />
+                <ScalarProperty Name="supervisor_id" ColumnName="supervisor_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="job_pos_id" ColumnName="job_pos_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

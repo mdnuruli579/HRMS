@@ -54,6 +54,11 @@ namespace HRMS
                 url: "Dashboard/Employee_Overview",
                 defaults: new { controller = "Dashboard", action = "Employee_Overview" }
             );
+            routes.MapRoute(
+                name: "GetEmployee",
+                url: "Employee/GetEmployee",
+                defaults: new { controller = "Employee", action = "GetEmployee" }
+            );
 
             routes.MapRoute(
                 name: "Default",

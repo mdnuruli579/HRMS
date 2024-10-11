@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "Employee";
+}
+<div class="container">
+    <h2 class="mb-4">Employee Form</h2>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Last Name -->
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Date of Birth -->
+                <div class="mb-3">
+                    <label for="date_of_birth" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select" id="gender" name="gender" required>
+                        <option value="" selected>Select Gender</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="3">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" maxlength="10" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="department_id" class="form-label">Department</label>
+                    <select class="form-select" id="department_id" name="department_id" required>
+                        <option value="" selected>Select Department</option>
+                        <!-- Add options dynamically based on departments -->
+                        <option value="1">HR</option>
+                        <option value="2">Finance</option>
+                        <option value="3">Engineering</option>
+                        <option value="4">Marketing</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="job_position_id" class="form-label">Job Position</label>
+                    <select class="form-select" id="job_position_id" name="job_position_id" required>
+                        <option value="" selected>Select Job Position</option>
+                        <!-- Add options dynamically based on job positions -->
+                        <option value="1">Software Engineer</option>
+                        <option value="2">Manager</option>
+                        <option value="3">Analyst</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Date of Joining -->
+                <div class="mb-3">
+                    <label for="date_of_joining" class="form-label">Date of Joining</label>
+                    <input type="date" class="form-control" id="date_of_joining" name="date_of_joining" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="employment_status" class="form-label">Employment Status</label>
+                    <select class="form-select" id="employment_status" name="employment_status" required>
+                        <option value="" selected>Select Status</option>
+                        <option value="1">Full-time</option>
+                        <option value="2">Part-time</option>
+                        <option value="3">Contractor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="supervisor_id" class="form-label">Supervisor</label>
+                    <select class="form-select" id="supervisor_id" name="supervisor_id">
+                        <option value="" selected>Select Supervisor</option>
+                        <option value="1">John Doe</option>
+                        <option value="2">Jane Smith</option>
+                        <option value="3">Michael Brown</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<table class="table">
+    <thead class="bg-dark text-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Joining Date</th>
+            <th scope="col">Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>mdo</td>
+            <td>mdo</td>
+            <td>mdo</td>
+            <td>mdo</td>
+        </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        getemployee();
+    })
+
+    const getemployee = () => {
+        $.ajax({
+            url: '/Employee/GetEmployee',
+            type: 'post',
+            data: {},
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error Status: ' + status);
+                console.error('Error: ' + error);
+                console.error('Response Text: ' + xhr.responseText)
+            }
+        })
+    }
+</script>
